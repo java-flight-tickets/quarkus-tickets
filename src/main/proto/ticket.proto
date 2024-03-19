@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package org.eventTicket;
+
+service TicketService{
+
+      rpc GetAllTickets (Empty) returns (TicketList){}
+      rpc GetTicketById(TicketRequestId) returns (Ticket) {};
+      rpc CreateTicket(Ticket) returns (Ticket) {};
+      rpc UpdateTicket(Ticket) returns (Ticket) {};
+      rpc RemoveTicket(TicketRequestId) returns (Empty){}
+}
+
+message Empty{}
+
+message Ticket{
+      string id = 1;
+      string provider = 2;
+      string date = 3;
+      string cityDeparture = 4;
+      string cityArrival = 5;
+}
+
+message TicketList{
+      repeated Ticket tickets = 1;
+}
+
+message TicketRequestId{
+      string id = 1;
+}
