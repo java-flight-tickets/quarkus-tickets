@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:5.0.25-focal
+    container_name: "mongodbTickets"
+    ports:
+      - 27070:27017
+    volumes:
+      - ~/mongo/data:/data/db
+
+  tickets:
+    image: quarkus/ita-quarkus-jvm
+    container_name: "tickets"
+    ports:
+      - 9000:9000
+    depends_on:
+      - mongodb
+volumes:
+  mongodb_data:
